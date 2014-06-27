@@ -6,6 +6,8 @@ To naïvely traverse the AST object with callbacks will result in an exponential
 
 This walker calls no functions itself, only the callback passed in, and it only calls it on primary nodes of the tree (those with a `type` property), not every property and value. It also uses the fastest possible ways (on V8) to check types and iterate over properties and arrays.
 
+The walker returns no result from the callbacks, only undefined.
+
 ## Usage
 
 ```js

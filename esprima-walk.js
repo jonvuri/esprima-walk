@@ -47,25 +47,29 @@ walk.walkAddParent = function ( ast, fn ) {
 
 		for ( key in node ) {
 
-			child = node[ key ]
+			if ( key !== 'parent' ) {
+				
+				child = node[ key ]
 
-			if ( child instanceof Array ) {
+				if ( child instanceof Array ) {
 
-				for ( j = 0, len = child.length; j < len; j += 1 ) {
+					for ( j = 0, len = child.length; j < len; j += 1 ) {
 
-					subchild = child[ j ]
+						subchild = child[ j ]
 
-					subchild.parent = node
+						subchild.parent = node
 
-					stack.push( subchild )
+						stack.push( subchild )
+
+					}
+
+				} else if ( child != void 0 && typeof child.type === 'string' ) {
+
+					child.parent = node
+
+					stack.push( child )
 
 				}
-
-			} else if ( child != void 0 && typeof child.type === 'string' ) {
-
-				child.parent = node
-
-				stack.push( child )
 
 			}
 

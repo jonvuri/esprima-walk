@@ -57,7 +57,11 @@ walk.walkAddParent = function ( ast, fn ) {
 
 						subchild = child[ j ]
 
-						subchild.parent = node
+						if( subchild instanceof Object ) {
+
+							subchild.parent = node
+
+						}
 
 						stack.push( subchild )
 

@@ -57,7 +57,7 @@ walk.walkAddParent = function ( ast, fn ) {
 
 						subchild = child[ j ]
 
-						if( subchild instanceof Object ) {
+						if( subchild instanceof Object  && key != 'range' ) {
 
 							subchild.parent = node
 

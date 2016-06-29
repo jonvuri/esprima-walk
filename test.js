@@ -8,8 +8,64 @@ var expect = require( 'chai' ).expect
 
 var walk = require( './esprima-walk' )
 
-describe( 'esprima-walk', function () {
+var esprima = require('esprima')
 
+var source = 'var i=0;'
+
+
+
+
+
+
+describe('esprima-walk with range', function(){
+	it('should work', function(){
+		var ast = esprima.parse(source, {
+			range: true
+		})
+
+		var types = []
+
+		walk( ast, function ( node ) {
+			types.push( node.type )
+		} )
+
+		var expectedTypes = [ 'Program',
+	  'VariableDeclaration',
+	  'VariableDeclarator',
+	  'Identifier',
+	  'Literal' ]
+
+		expect( types ).to.deep.equal( expectedTypes )
+
+	})
+})
+
+describe('esprima-walkAddParent with range', function(){
+	walk = walk.walkAddParent
+	it('should work', function(){
+		var ast = esprima.parse(source, {
+			range: true
+		})
+
+		var types = []
+
+		walk( ast, function ( node ) {
+			types.push( node.type )
+		} )
+
+		var expectedTypes = [ 'Program',
+	  'VariableDeclaration',
+	  'VariableDeclarator',
+	  'Identifier',
+	  'Literal' ]
+
+		expect( types ).to.deep.equal( expectedTypes )
+
+	})
+})
+
+
+describe( 'esprima-walk', function () {
 
 	it( 'should work', function () {
 		
@@ -68,3 +124,4 @@ describe( 'esprima-walk', function () {
 
 
 } )
+

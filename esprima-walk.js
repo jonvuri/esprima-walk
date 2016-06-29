@@ -15,7 +15,7 @@ function walk( ast, fn ) {
 
 			child = node[ key ]
 
-			if ( child instanceof Array ) {
+			if ( child instanceof Array  && key != 'range') {
 
 				for ( j = 0, len = child.length; j < len; j += 1 ) {
 					stack.push( child[ j ] )
@@ -51,13 +51,13 @@ walk.walkAddParent = function ( ast, fn ) {
 				
 				child = node[ key ]
 
-				if ( child instanceof Array ) {
+				if ( child instanceof Array && key != 'range') {
 
 					for ( j = 0, len = child.length; j < len; j += 1 ) {
 
 						subchild = child[ j ]
 
-						if( subchild instanceof Object ) {
+						if( subchild instanceof Object   ) {
 
 							subchild.parent = node
 

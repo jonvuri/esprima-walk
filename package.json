@@ -10,7 +10,8 @@
 	"devDependencies": {
 		"mocha": "~1.19.0",
 		"chai": "~1.9.1",
-		"eslint": "~0.6.2"
+		"eslint": "~0.6.2",
+		"esprima": "~2.7.2"
 	},
 	"scripts": {
 		"test": "node_modules/eslint/bin/eslint.js . && node_modules/mocha/bin/mocha --reporter spec test.js"
